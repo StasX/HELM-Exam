@@ -1,24 +1,8 @@
-FROM alpine:3.19
-
-RUN apk add --no-cache \
-    curl \
-    bash \
-    python3 \
-    py3-pip \
-    jq \
-    git \
-    openssl \
-    unzip \
-    gcompat
-
-
-# Python prometheus app
+FROM python:3.14.3
 WORKDIR /app
+RUN python -m venv env
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir --break-system-packages -r requirements.txt
+RUN /app/env/bin/pip install -r requirements.txt
 COPY app.py .
-
-LABEL VERSION=${VERSION}
-
-EXPOSE 8000
-CMD ["python3", "app.py"]
+ENTRYPOINT ["/app/env/bin/python", "-m", "flask", "--app", "src/app.py", "run", "--host=0.0.0.0", "--port=5001"]
+EXPOSE 5001
