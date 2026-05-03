@@ -1,0 +1,5 @@
+helmchart
+.dockerignore
+Dockerfile
+.git/
+.gitignore
