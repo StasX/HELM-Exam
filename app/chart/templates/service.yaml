@@ -15,7 +15,7 @@ spec:
   - name: http   
     protocol: TCP
     {{ if .Values.ingress.enabled }}
-    port: 80
+    port: {{ .Values.ingress.port }}
     {{ end }}
     port: {{ .Values.pod.port }}
     targetPort: {{ .Values.pod.targetPort }}
