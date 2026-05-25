@@ -31,5 +31,14 @@ podTemplate(cloud: 'kubernetes', containers: [
               sh "docker build -t ${appimage}:${apptag} ."
             }
         } //end build docker image
+        stage('Push Docker Image') {
+            container('docker') {
+              echo "Tagging docker image..."
+              sh "docker tag ${appimage}:${apptag} ${appimage}:latest"
+              echo "Pushing docker image to registry..."
+              // sh "docker push ${appimage}:${apptag}"
+              sh "docker push ${appimage}:latest"
+            }
+        } //end push docker image
     }
 }
