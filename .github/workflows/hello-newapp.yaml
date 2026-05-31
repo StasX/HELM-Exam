@@ -10,8 +10,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
-      name: checkout
+      name: checkout  
       with:
         sparse-checkout: |
           .github
           chart
+    - name: notify
+      run: curl -X POST -H 'Content-type: application/json' --data '{"text":"Pipe line finished successfuly"}' ${ secrets.SLACK_API }
