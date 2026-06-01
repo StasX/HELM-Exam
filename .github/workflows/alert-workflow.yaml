@@ -5,8 +5,6 @@ on:
     workflows: ["main-workflow"]
     types:
       - completed
-    branches:
-      - "github-action"
 
 jobs:
   test:
@@ -14,8 +12,8 @@ jobs:
     steps:
     - name: test
       run: |
-        echo ${{ github.event.workflow_run.conclusion }}
-        echo ${{ github.event.workflow_run.conclusion == 'failure' }}
+        echo "Conclusion: ${{ github.event.workflow_run.conclusion }}"
+
   alert-failure:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
@@ -26,7 +24,8 @@ jobs:
         webhook: ${{ secrets.SLACK_API}}
         webhook-type: incoming-webhook
         payload: |
-          text: "Pipe line in workflow: ${{ github.event.workflow_run.name }} failed, please check the logs"
+          text: "Pipeline in workflow: ${{ github.event.workflow_run.name }} failed, please check the logs"
+
   alert-success:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
@@ -37,4 +36,4 @@ jobs:
         webhook: ${{ secrets.SLACK_API}}
         webhook-type: incoming-webhook
         payload: |
-          text: "Pipe line in workflow: ${{ github.event.workflow_run.name }} succeeded"
+          text: "Pipeline in workflow: ${{ github.event.workflow_run.name }} succeeded"
