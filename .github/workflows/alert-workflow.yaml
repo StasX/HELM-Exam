@@ -2,8 +2,7 @@ name: alert-workflow
 on:
   workflow_run:
     workflows: ["main-workflow"]
-    types:
-      - completed
+    types: [completed]
   
 jobs:
   alert-failure:
