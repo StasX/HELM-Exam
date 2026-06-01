@@ -2,10 +2,9 @@ name: alert-workflow
 
 on:
   workflow_run:
-    workflows:
-      - main-workflow
-    types:
-      - completed
+    workflows: [main-workflow]
+    types: [completed]
+    branches: [github-action]
 
 jobs:
   alert-failure:
