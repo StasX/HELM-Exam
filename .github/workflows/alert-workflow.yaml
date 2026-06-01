@@ -1,12 +1,12 @@
 name: alert-workflow
+
 on:
   workflow_run:
-    workflows: 
+    workflows:
       - main-workflow
-    types: 
+    types:
       - completed
-  workflow_dispatch:
-  
+
 jobs:
   alert-failure:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
