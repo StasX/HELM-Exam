@@ -4,7 +4,6 @@ on:
     workflows: ["main-workflow"]
     types:
       - completed
-  workflow_dispatch:
   
 jobs:
   alert-failure:
