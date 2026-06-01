@@ -2,7 +2,7 @@ name: alert-workflow
 
 on:
   workflow_run:
-    workflows: [main-workflow]
+    workflows: [main-workflow.yaml]
     types: [completed]
     branches: [github-action]
 
