@@ -40,10 +40,10 @@ jobs:
           ${{ vars.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:${{ github.run_number }}
           ${{ vars.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:latest
 
-    - name: notify
-      uses: slackapi/slack-github-action@v3.0.3
-      with:
-        webhook: ${{ secrets.SLACK_API}}
-        webhook-type: incoming-webhook
-        payload: |
-          text: "Pipe line finished successfuly"
+    # - name: notify
+    #   uses: slackapi/slack-github-action@v3.0.3
+    #   with:
+    #     webhook: ${{ secrets.SLACK_API}}
+    #     webhook-type: incoming-webhook
+    #     payload: |
+    #       text: "Pipe line finished successfuly"
